@@ -1,0 +1,74 @@
+﻿@model CinemaBookingSystem.Models.Movie
+
+@{
+    ViewData["Title"] = "Buy";
+}
+<h2>Edit</h2>
+
+<h4>Movie</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Buy" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShowTime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ShowTime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Theater)
+                </dt>
+                <dd>
+                    #@Html.DisplayFor(model => model.Theater.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Tickets) Left
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Tickets)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TicketValidator)
+
+                </dt>
+                <dd>
+                    <input asp-for="TicketValidator" type="text"/>
+                    <span asp-validation-for="TicketValidator" class="text-danger"></span>
+                </dd>
+            </dl>
+            @{
+                if (Model.Tickets <= 0 || Model.TicketValidator > Model.Tickets)
+                {
+                    <div class="form-group">
+                        <input type="submit" id="btnId" value="Buy" class="btn btn-default" disabled />
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <input type="submit" value="Buy" class="btn btn-default" />
+                    </div>
+                }
+            }
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

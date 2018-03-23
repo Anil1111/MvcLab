@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CinemaBookingSystem.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.Name)</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ShowTimeSortParm"]">@Html.DisplayNameFor(model => model.ShowTime)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Theater)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TicketSortParm"]">@Html.DisplayNameFor(model => model.Tickets)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowTime)
+            </td>
+            <td>
+                #@Html.DisplayFor(modelItem => item.Theater.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tickets)
+            </td>
+            <td>
+                <a asp-action="Buy" asp-route-id="@item.Id">Buy</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

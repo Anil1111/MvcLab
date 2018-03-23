@@ -1,0 +1,11 @@
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.deps.json
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.runtimeconfig.json
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.runtimeconfig.dev.json
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.dll
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\bin\Debug\netcoreapp2.0\CinemaBookingSystem.pdb
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.csprojResolveAssemblyReference.cache
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.csproj.CoreCompileInputs.cache
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.AssemblyInfoInputs.cache
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.AssemblyInfo.cs
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.dll
+C:\Users\jkarl\Documents\C#\Web\MvcLab\CinemaBookingSystem\CinemaBookingSystem\obj\Debug\netcoreapp2.0\CinemaBookingSystem.pdb
