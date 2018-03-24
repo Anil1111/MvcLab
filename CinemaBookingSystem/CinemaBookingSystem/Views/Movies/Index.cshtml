@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Movies</h2>
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +15,8 @@
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["ShowTimeSortParm"]">@Html.DisplayNameFor(model => model.ShowTime)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Theater)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["TheaterSortParm"]">@Html.DisplayNameFor(model => model.Theater)</a>
+                
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["TicketSortParm"]">@Html.DisplayNameFor(model => model.Tickets)</a>
@@ -24,24 +25,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShowTime)
-            </td>
-            <td>
-                #@Html.DisplayFor(modelItem => item.Theater.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tickets)
-            </td>
-            <td>
-                <a asp-action="Buy" asp-route-id="@item.Id">Buy</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShowTime)
+                </td>
+                <td>
+                    #@Html.DisplayFor(modelItem => item.Theater.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tickets)
+                </td>
+                <td>
+                    @if (item.Tickets <= 0)
+                    {
+                        <a asp-action="Buy" asp-route-id="@item.Id" hidden>Buy</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Buy" asp-route-id="@item.Id">Buy</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
