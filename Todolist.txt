@@ -1,5 +1,4 @@
 To Do:
 - Limit Bug - Display validation message properly when trying to buy more tickets than the current amount of tickets in the db for that pacific movie
-- Buy confirmation screen
 - Clean Up
 - Visuals (it doesn't look pretty atm)

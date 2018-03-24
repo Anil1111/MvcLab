@@ -19,6 +19,13 @@ namespace CinemaBookingSystem.Controllers
             _context = context;
         }
 
+        public IActionResult Home()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
         // GET: Movies
         public async Task<IActionResult> Index(string sortOrder)
         {
@@ -26,6 +33,7 @@ namespace CinemaBookingSystem.Controllers
             ViewData["NameSortParm"] = sortOrder == "name" ? "name_desc" : "name";
             ViewData["TicketSortParm"] = sortOrder == "tickets" ? "tickets_desc" : "tickets";
             ViewData["ShowTimeSortParm"] = sortOrder == "showtime" ? "showtime_desc" : "showtime";
+            ViewData["TheaterSortParm"] = sortOrder == "theater" ? "theater_desc" : "theater";
 
             var sortQuery = from m in _context.Movies.Include(t => t.Theater)
                             select m;
@@ -36,7 +44,7 @@ namespace CinemaBookingSystem.Controllers
                     sortQuery = sortQuery.OrderBy(m => m.Name);
                     break;
                 case "name_desc":
-                        sortQuery = sortQuery.OrderByDescending(m => m.Name);
+                    sortQuery = sortQuery.OrderByDescending(m => m.Name);
                     break;
                 case "tickets_desc":
                     sortQuery = sortQuery.OrderByDescending(m => m.Tickets);
@@ -49,6 +57,12 @@ namespace CinemaBookingSystem.Controllers
                     break;
                 case "showtime":
                     sortQuery = sortQuery.OrderBy(m => m.ShowTime);
+                    break;
+                case "theater":
+                    sortQuery = sortQuery.OrderBy(m => m.Theater.Id);
+                    break;
+                case "theater_desc":
+                    sortQuery = sortQuery.OrderByDescending(m => m.Theater.Id);
                     break;
                 default:
                     sortQuery = sortQuery.OrderBy(m => m.ShowTime);
@@ -65,7 +79,7 @@ namespace CinemaBookingSystem.Controllers
             {
                 return NotFound();
             }
-            
+
             var movie = _context.Movies.Include(t => t.Theater).SingleOrDefaultAsync(m => m.Id == id);
 
             if (movie == null)
@@ -78,29 +92,31 @@ namespace CinemaBookingSystem.Controllers
         // POST: Movies/Buy/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Buy(int id, Movie movieValidator)
+        public async Task<IActionResult> Buy(int id, Movie validator)
         {
-            var movie = await _context.Movies.SingleOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movies.Include(t => t.Theater).SingleOrDefaultAsync(m => m.Id == id);
 
             if (id != movie.Id)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    movie.Tickets = movie.Tickets - movieValidator.TicketValidator;
+                    movie.Tickets = movie.Tickets - validator.TicketValidator;
+
                     if (movie.Tickets >= 0)
                     {
+                        movie.TicketValidator = validator.TicketValidator;
                         _context.Update(movie);
                         await _context.SaveChangesAsync();
                     }
                     else
                     {
-                        // TEMPORARY REMOVE WHEN DONE
-                        movie.Tickets = movie.Tickets + movieValidator.TicketValidator;
+                        // TEMPORARY FIX - REMOVE WHEN DONE
+                        movie.Tickets = movie.Tickets + validator.TicketValidator;
+                        movie.TicketErrorMessage = "Not enough tickets available, try again";
                         return View(movie);
                     }
                 }
@@ -115,8 +131,27 @@ namespace CinemaBookingSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(TicketConfirmationView), new { id = movie.Id, ticketsBought = movie.TicketValidator });
             }
+            return View(movie);
+        }
+
+        //GET: Movie/TicketConfirmation/id
+        public async Task<IActionResult> TicketConfirmationView(int? id, int ticketsBought)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _context.Movies.Include(t => t.Theater).SingleOrDefaultAsync(m => m.Id == id);
+            movie.TicketValidator = ticketsBought;
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
             return View(movie);
         }
 

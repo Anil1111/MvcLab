@@ -3,8 +3,6 @@
 @{
     ViewData["Title"] = "Buy";
 }
-<h2>Edit</h2>
-
 <h4>Movie</h4>
 <hr />
 <div class="row">
@@ -43,15 +41,16 @@
 
                 </dt>
                 <dd>
-                    <input asp-for="TicketValidator" type="text"/>
-                    <span asp-validation-for="TicketValidator" class="text-danger"></span>
+                    <input asp-for="TicketValidator" type="text" />
+                    <span asp-validation-for="TicketValidator" class="text-danger"></span><br>
+                    @Html.DisplayFor(model => model.TicketErrorMessage)
                 </dd>
             </dl>
             @{
                 if (Model.Tickets <= 0 || Model.TicketValidator > Model.Tickets)
                 {
                     <div class="form-group">
-                        <input type="submit" id="btnId" value="Buy" class="btn btn-default" disabled />
+                        <input type="submit" value="Buy" class="btn btn-default" disabled />
                     </div>
                 }
                 else
