@@ -123,7 +123,7 @@ namespace CinemaBookingSystem.Controllers
                     {
                         // TEMPORARY FIX - REMOVE WHEN DONE
                         movie.Tickets = movie.Tickets + validator.TicketValidator;
-                        movie.TicketErrorMessage = "Not enough tickets available, try again";
+                        movie.TicketErrorMessage = "Not enough tickets, try again";
                         return View(movie);
                     }
                 }
