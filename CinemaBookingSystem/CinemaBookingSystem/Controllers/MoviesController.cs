@@ -26,6 +26,13 @@ namespace CinemaBookingSystem.Controllers
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page";
+
+            return View();
+        }
+
         // GET: Movies
         public async Task<IActionResult> Index(string sortOrder)
         {

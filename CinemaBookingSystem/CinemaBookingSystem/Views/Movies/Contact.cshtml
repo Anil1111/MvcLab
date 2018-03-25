@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CinemaBookingSystem.Models.Movie>
+
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<address>
+    Cinema Street 6<br />
+    London, GB<br />
+</address>
+
+<address>
+    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@berrascinema.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@berrascinema.com</a>
+</address>
+
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <a asp-action="Home">Home</a>
+            <a asp-action="Index">Movie List</a>
+        </div>
+    </div>
+</div>
