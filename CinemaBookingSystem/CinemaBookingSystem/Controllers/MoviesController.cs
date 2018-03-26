@@ -111,20 +111,25 @@ namespace CinemaBookingSystem.Controllers
             {
                 try
                 {
-                    movie.Tickets = movie.Tickets - validator.TicketValidator;
-
-                    if (movie.Tickets >= 0)
+                    if (validator.TicketValidator > movie.Tickets)
                     {
-                        movie.TicketValidator = validator.TicketValidator;
-                        _context.Update(movie);
-                        await _context.SaveChangesAsync();
+                        ModelState.AddModelError(string.Empty, "Not enough tickets");
+                        return View(movie);
                     }
                     else
                     {
-                        // TEMPORARY FIX - REMOVE WHEN DONE
-                        movie.Tickets = movie.Tickets + validator.TicketValidator;
-                        movie.TicketErrorMessage = "Not enough tickets, try again";
-                        return View(movie);
+                        movie.Tickets = movie.Tickets - validator.TicketValidator;
+
+                        if (movie.Tickets >= 0)
+                        {
+                            movie.TicketValidator = validator.TicketValidator;
+                            _context.Update(movie);
+                            await _context.SaveChangesAsync();
+                        }
+                        else
+                        {
+                            return View(movie);
+                        }
                     }
                 }
                 catch (DbUpdateConcurrencyException)

@@ -8,7 +8,6 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Buy" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <dl class="dl-horizontal">
                 <dt>
@@ -42,15 +41,15 @@
                 </dt>
                 <dd>
                     <input asp-for="TicketValidator" type="text" />
-                    <p><span asp-validation-for="TicketValidator" class="text-danger"></span></p>
-                    <p class="text-danger">@Html.DisplayFor(model => model.TicketErrorMessage)</p>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
                 </dd>
             </dl>
             @{
                 if (Model.Tickets <= 0 || Model.TicketValidator > Model.Tickets)
                 {
                     <div class="form-group">
-                        <input type="submit" value="Buy" class="btn btn-default" disabled />
+                        <input type="submit" value="Sold Out" class="btn btn-danger" disabled />
                     </div>
                 }
                 else
