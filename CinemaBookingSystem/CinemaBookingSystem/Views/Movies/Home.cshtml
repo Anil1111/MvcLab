@@ -4,13 +4,13 @@
     ViewData["Title"] = "Home";
     }
 
-    <h2>Movies</h2>
-    <p>Information about Cinema</p>
-    <p>Bla bla bla stuff stuff</p>
-    <div class="row">
-        <div class="col-md-4">
-                <div>
-                    <a asp-action="Index">Movie List</a>
-                </div>
-        </div>
+    <div class="jumbotron-fluid">
+        <h1 class="display-3">Welcome!</h1>
+        <p class="lead">This is a simple cinema owned by Berra.</p>
+        <hr class="my-4">
+        <img src="~/images/empty-cinema.jpg" height=450px width=auto/>
+        <p>It uses stuff for movies and things.</p>
+        <p class="lead">
+            <a asp-action="Index" class="btn btn-primary btn-lg">Go to Movie list</a>
+        </p>
     </div>

@@ -18,7 +18,10 @@
     }
 }
 
-<h2>Ticket Confirmation</h2>
+
+@{
+    var code = new Movie();
+}
 
 <div>
     <dl class="dl-horizontal">
@@ -57,7 +60,14 @@
             }
         </dd>
     </dl>
+    <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+        <div class="card-header">Your Ticket Number</div>
+        <div class="card-body">
+            <h1 class="jumbotron-fluid">@code.CodeGenerator()</h1>
+        </div>
+    </div>
 </div>
 <div>
-    <a asp-action="Home">Back</a>
+    <a asp-action="Home" class="btn btn-primary btn-lg">Home</a>
+    <a asp-action="Index" class="btn btn-primary btn-lg">Movies</a>
 </div>
