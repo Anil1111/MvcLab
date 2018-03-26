@@ -35,5 +35,31 @@ namespace CinemaBookingSystem.Models
         //TEMPORARY FOR TESTING
         [NotMapped]
         public string TicketErrorMessage { get; set; }
+        
+        public string CodeGenerator()
+        {
+            var code = GetLetter() + GetNumber();
+            return code;
+        }
+
+        public char GetLetter()
+        {
+            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Random rand = new Random();
+            int num = rand.Next(0, chars.Length - 1);
+            return chars[num];
+        }
+        public string GetNumber()
+        {
+            Random rand = new Random();
+            string num = "";
+
+            for (int i = 0; i < 5; i++)
+            {
+                num += rand.Next(0, 9);
+            }
+
+            return num;
+        }
     }
 }
