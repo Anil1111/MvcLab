@@ -38,7 +38,7 @@
                 #@Html.DisplayFor(modelItem => item.Theater.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tickets)
+                @Html.DisplayFor(modelItem => item.Tickets) / @Html.DisplayFor(modelItem => item.Theater.TotalCapacity)
             </td>
             <td>
                 @if (item.Tickets <= 0)
