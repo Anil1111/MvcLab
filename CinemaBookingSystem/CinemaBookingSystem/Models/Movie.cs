@@ -30,11 +30,6 @@ namespace CinemaBookingSystem.Models
         [Range(1, 12,
             ErrorMessage = "Number of tickets must be between 1 - 12")]
         public int TicketValidator { get; set; }
-
-
-        //TEMPORARY FOR TESTING
-        [NotMapped]
-        public string TicketErrorMessage { get; set; }
         
         public string CodeGenerator()
         {
